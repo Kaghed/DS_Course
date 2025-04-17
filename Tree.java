@@ -101,6 +101,7 @@ public class Tree {
     public void traversePostOrder(){
         traversePostOrder(root);
     } 
+
     private void traversePostOrder(Node root){
 
         
@@ -112,6 +113,20 @@ public class Tree {
             
         }
 
+    }
+
+    public int height(){
+        return height(root);
+    }
+
+    public int height(Node root){
+        if(root == null) return 0;
+
+        if(root.left == null && root.right == null) return 0;
+
+        return 1+ Math.max(
+            height(root.left), 
+            height(root.right));
     }
 
 
