@@ -148,7 +148,45 @@ public class Tree {
         right));
     }
 
-    
+    public int bstmin(){
+        if (root == null)
+        throw new IllegalStateException();
+        
+        var current = root;
+        var last = current;
+
+        while(current!= null){
+            last = current;
+            current=current.left;
+        }
+        return last.value;
+    }
+
+
+    public boolean equals(Tree tree){
+
+        if(tree == null)
+        return false;
+        
+        return equals(root , tree.root);
+    }
+
+    private boolean equals(Node node1 , Node node2){
+
+        if(node1 == null && node2 == null)
+        return true;
+       
+        if(node1 != null && node2 !=null){
+            return (node1.value == node2.value)
+            && equals(node1.left ,node2.left)
+            && equals(node1.right , node2.right);
+        }
+
+
+       // if( (node1 == null && node2 != null) || (node1 != null && node2 == null) )
+        return false;
+
+    }
 
  
 
