@@ -188,7 +188,30 @@ public class Tree {
 
     }
 
+    public boolean isBinarySearchTree() {
+        return isBinarySearchTree(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+     }
+  private boolean isBinarySearchTree(Node root , int min , int max){
+     if(root == null)
+     return true;
  
+     if(root.value <= min || root.value >= max){
+     return false;
+     }
+     
+     return isBinarySearchTree(root.left, min,root.value-1)
+    && isBinarySearchTree(root.right, root.value + 1, max);
+    
+ 
+ 
+ }
+ public void swapRoot(){
+     var temp = root.left;
+     root.left = root.right;
+     root.right = temp;
+ }
+ 
+
 
 
 }
