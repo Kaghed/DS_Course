@@ -228,6 +228,11 @@ public void NodesAtKDistance( int distance){
     NodesAtKDistance(root.right, distance-1);
 
  }
+public void traverseLevelOrder(){
+    for(int i=0;i<=height(root);i++){
+        NodesAtKDistance(i);
+    }
+}
 
 
 
