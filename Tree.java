@@ -210,7 +210,24 @@ public class Tree {
      root.left = root.right;
      root.right = temp;
  }
+
+public void NodesAtKDistance( int distance){
+     NodesAtKDistance(root ,  distance);
+}
+
  
+ private void NodesAtKDistance(Node root , int distance){
+
+    if (root == null)
+    return ;
+    if(distance == 0){
+    System.out.println(root.value);;
+        return ;
+    }
+    NodesAtKDistance(root.left, distance-1);
+    NodesAtKDistance(root.right, distance-1);
+
+ }
 
 
 
