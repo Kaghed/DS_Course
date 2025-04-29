@@ -296,5 +296,21 @@ countLeaves(root.right);
 
 }
 
+public boolean areSibling(int value1, int value2) {
+    return areSibling(root, value1, value2);
+}
+
+private boolean areSibling(Node root, int value1, int value2) {
+    if (root == null) return false;
+
+    if (root.left != null && root.right != null) {
+        if ((root.left.value == value1 && root.right.value == value2) ||
+            (root.left.value == value2 && root.right.value == value1)) {
+            return true;
+        }
+    }
+
+    return areSibling(root.left, value1, value2) || areSibling(root.right, value1, value2);
+}
 
 }
