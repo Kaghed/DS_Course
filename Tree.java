@@ -367,6 +367,19 @@ public boolean contains(int value){
      return left || right;
  }
 
+ public boolean findInBT(int value){
+    return findInBT(root , value);
+}
+private boolean findInBT(Node root , int value){
+
+    if(root == null)
+    return false;
+
+    if(root.value == value)
+    return true;
+
+    return findInBT(root.left , value) || findInBT(root.right, value);
+}
 
 
 }
