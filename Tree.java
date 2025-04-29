@@ -14,7 +14,7 @@ public class Tree {
 
     private Node root;
 
-    public void insert(int value) {
+    public void insertLeaf(int value) {
 
         if (root == null) {
             root = new Node(value);
@@ -49,6 +49,44 @@ public class Tree {
 
     }
 
+    
+    public void deleteLeaf(int value){
+        Node node = new Node(value);
+        deleteLeaf(node);
+    }
+
+    private void deleteLeaf(Node node) {
+        if (root == null) {
+            System.out.println("Tree is empty");
+            return;
+        }
+    
+        if(root.left != null || root.right != null){
+            System.out.println("It is not a leaf");
+        return;
+    }
+        Node current = root;
+    
+        while (current != null) {
+            if (current.left.value == node.value) {
+                current.left = null; 
+                return;
+            }
+            if (current.right.value == node.value) {
+                current.right = null; 
+                return;
+            }
+    
+            if (node.value < current.value) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+        }
+    
+        System.out.println("Node not found");
+    }
+    
     public boolean find(int value) {
 
         var current = root;
@@ -328,5 +366,7 @@ public boolean contains(int value){
     
      return left || right;
  }
+
+
 
 }
