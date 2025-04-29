@@ -313,4 +313,20 @@ private boolean areSibling(Node root, int value1, int value2) {
     return areSibling(root.left, value1, value2) || areSibling(root.right, value1, value2);
 }
 
+public boolean contains(int value){
+    return contains(root , value);
+    }
+    private boolean contains(Node root , int value){
+ 
+     if(root == null)
+     return false;
+ 
+     if(root.value == value)
+     return true;
+     var left = contains(root.left, value);
+     var right= contains(root.right, value);
+    
+     return left || right;
+ }
+
 }
