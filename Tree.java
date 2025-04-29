@@ -147,8 +147,24 @@ public class Tree {
         return Math.min(root.value, Math.min(left, 
         right));
     }
+   
+    public int max(){
+        return max(root);
+    }
 
-    public int bstmin(){
+    private int max(Node root){
+
+        if(isLeaf(root)) return root.value;
+    
+        var left = max(root.left);
+        var right = max(root.right);
+
+        return Math.max(root.value, Math.max(left, 
+        right));
+    }
+
+
+    public int bstMin(){
         if (root == null)
         throw new IllegalStateException();
         
@@ -162,6 +178,20 @@ public class Tree {
         return last.value;
     }
 
+    public int bstMax(){
+        return bstMax(root);
+    } 
+    private int bstMax(Node root){
+
+        if(root == null)
+        return 0;
+
+        if(root.right == null)
+        return root.value;
+
+        return bstMax(root.right);
+
+    }
 
     public boolean equals(Tree tree){
 
