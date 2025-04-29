@@ -264,6 +264,20 @@ public void traverseLevelOrder(){
     }
 }
 
+public int size() {
+    return size(root);
+}
+
+private int size(Node root) {
+
+    if (root == null)
+        return 0;
+
+    return 1 + size(root.left) +
+            size(root.right);
+
+}
+
 
 
 }
