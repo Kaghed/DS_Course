@@ -278,6 +278,23 @@ private int size(Node root) {
 
 }
 
+public int countLeaves(){
+    return countLeaves(root);
+} 
+
+private int countLeaves(Node root){
+
+if(root == null)
+return 0;
+if(isLeaf(root))
+return 1;
+
+
+return countLeaves(root.left)+
+countLeaves(root.right);
+
+
+}
 
 
 }
