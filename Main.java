@@ -13,13 +13,8 @@ public class Main {
         tree.insertLeaf(4);
         tree.insertLeaf(1);
         tree.insertLeaf(6);
-        tree.insertLeaf(9);
-        tree.insertLeaf(8);
-        tree.insertLeaf(10);
-        System.out.println(tree.find(6));
-       tree.deleteLeaf(7);
-       System.out.println(tree.find(6));;        
-
+      
+    
 
     }
 }
