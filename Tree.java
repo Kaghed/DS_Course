@@ -20,6 +20,7 @@ public class Tree {
             root = new Node(value);
             return;
         }
+        
         var current = root;
 
         Node node = new Node(value);
