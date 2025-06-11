@@ -4,7 +4,7 @@ public class AVLTree {
 
         private int value;
         private Node left, right;
-        private int Nheight = 0;
+        private int height = 0;
         
         public Node(int value) {
             this.value = value;
@@ -34,25 +34,28 @@ public class AVLTree {
         }
 
         
-        setHeight(root);
+        root.height = 1+ Math.max(
+                height(root.left), height(root.right)) ;
+
             
-            return balance(root);
- 
+               balance(root);
+
+        return root;
     }
 
     private Node balance(Node root){
         if(isLeftHeavy(root)){
             if(balanceFactor(root.left) <= 0)
-             root.left = leftRotate(root.left);
-              return  rightRotate(root);
+             root.left= leftRotate(root.left);
+               return rightRotate(root);
     
     }else if(isRightHeavy(root)){
         if(balanceFactor(root.right)>0)
-           root.right = rightRotate(root.right);
-          return  leftRotate(root);        
+       root.right= rightRotate(root.right);
+      return  rightRotate(root);        
 
     }
-        return root;
+       return root; 
     }
     private boolean isLeftHeavy(Node node){
         return balanceFactor(node) >1; 
@@ -90,7 +93,7 @@ private Node rightRotate(Node root){
 
 
 private void setHeight(Node node){
-    node.Nheight = Math.max(
+    node.height = Math.max(
         height(node.left),
         height(node.right)) + 1;   
 }
@@ -111,7 +114,7 @@ private void setHeight(Node node){
 
     private int height(Node root) {
 
-        return (root == null) ? -1 :  root.Nheight;
+        return (root == null) ? -1 :  root.height;
     }
 
     private boolean isLeaf(Node node) {
@@ -143,7 +146,7 @@ private void setHeight(Node node){
                     return 0;
                 current = current.left;
             } else
-                return current.Nheight;
+                return current.height;
 
         }
 
