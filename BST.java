@@ -1,5 +1,5 @@
 
-public class Tree {
+public class BST {
 
     private class Node {
 
@@ -266,7 +266,7 @@ public class Tree {
 
     }
 
-    public boolean equals(Tree tree) {
+    public boolean equals(BST tree) {
 
         if (tree == null)
             return false;
