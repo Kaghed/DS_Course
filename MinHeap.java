@@ -91,7 +91,7 @@ public class MinHeap {
 
         if(smallest!=key){
             swap(heap, key, smallest);
-            MinHeapify(key);
+            MinHeapify(smallest);
         }
 
     

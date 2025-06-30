@@ -57,6 +57,7 @@ public class AVLTree {
     }
        return root; 
     }
+
     private boolean isLeftHeavy(Node node){
         return balanceFactor(node) >1; 
     }
@@ -151,4 +152,105 @@ private void setHeight(Node node){
         }
 
     }
+
+    private Node minValueNode(Node node) {
+        Node current = node;
+
+        // loop down to find the leftmost leaf
+        while (current.left != null)
+            current = current.left;
+
+        return current;
+    }
+
+    // Recursive function to delete a node with 
+    // given value from subtree with given root. 
+    // It returns root of the modified subtree.
+    private Node deleteNode(Node root, int value) {
+        // STEP 1: PERFORM STANDARD BST DELETE
+        if (root == null)
+            return root;
+
+        // If the value to be deleted is smaller 
+        // than the root's value, then it lies in 
+        // left subtree
+        if (value < root.value)
+            root.left = deleteNode(root.left, value);
+
+        // If the value to be deleted is greater 
+        // than the root's value, then it lies in 
+        // right subtree
+        else if (value > root.value)
+            root.right = deleteNode(root.right, value);
+
+        // if value is same as root's value, then 
+        // this is the node to be deleted
+        else {
+            // node with only one child or no child
+            if ((root.left == null) || 
+                (root.right == null)) {
+                Node temp = root.left != null ? 
+                            root.left : root.right;
+
+                // No child case
+                if (temp == null) {
+                    temp = root;
+                    root = null;
+                } else // One child case
+                    root = temp; // Copy the contents of 
+                                 // the non-empty child
+            } else {
+                // node with two children: Get the 
+                // inorder successor (smallest in 
+                // the right subtree)
+                Node temp = minValueNode(root.right);
+
+                // Copy the inorder successor's 
+                // data to this node
+                root.value = temp.value;
+
+                // Delete the inorder successor
+                root.right = deleteNode(root.right, temp.value);
+            }
+        }
+
+        // If the tree had only one node then return
+        if (root == null)
+            return root;
+
+        // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
+        root.height = Math.max(height(root.left), 
+                               height(root.right)) + 1;
+
+        // STEP 3: GET THE BALANCE FACTOR OF THIS 
+        // NODE (to check whether this node 
+        // became unbalanced)
+        int balance = balanceFactor(root);
+
+        // If this node becomes unbalanced, then 
+        // there are 4 cases
+
+        // Left Left Case
+        if (balance > 1 && balanceFactor(root.left) >= 0)
+            return rightRotate(root);
+
+        // Left Right Case
+        if (balance > 1 && balanceFactor(root.left) < 0) {
+            root.left = leftRotate(root.left);
+            return rightRotate(root);
+        }
+
+        // Right Right Case
+        if (balance < -1 && balanceFactor(root.right) <= 0)
+            return leftRotate(root);
+
+        // Right Left Case
+        if (balance < -1 && balanceFactor(root.right) > 0) {
+            root.right = rightRotate(root.right);
+            return leftRotate(root);
+        }
+
+        return root;
+    }
+
 }

@@ -7,19 +7,23 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
 
-        MinHeap h = new MinHeap(11);
-        h.insertKey(3);
-        h.insertKey(2);
-        h.deleteKey(1);
-        h.insertKey(15);
-        h.insertKey(5);
-        h.insertKey(4);
-        h.insertKey(45);
-        System.out.print(h.extractMin() + " ");
-        System.out.print(h.getMin() + " ");
-        
-        h.decreaseKey(2, 1);
-        System.out.print(h.getMin());
+        GraphWthArray graph = new GraphWthArray(5);
+
+        graph.addNode('A');
+        graph.addNode('B');
+        graph.addNode('C');
+        graph.addNode('D');
+        graph.addNode('E');
+       
+        graph.addEdge(0, 1);
+        graph.addEdge(1, 0);
+        graph.addEdge(1, 4);
+        graph.addEdge(2, 3);
+        graph.addEdge(2, 4);
+        graph.addEdge(4, 0);
+        graph.addEdge(4, 2);
+
+        graph.BFS(0);
 
     }
 
